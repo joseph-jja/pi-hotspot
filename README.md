@@ -32,4 +32,6 @@
     - echo "1" > /proc/sys/net/ipv4/conf/wlan1/forwarding  
 - make read only 
   - add this to your fstab
-    - tmpfs            /tmp            tmpfs   defaults,noatime,nosuid,nodev,noexec,mode=1777,size=64M 
+    ```
+    tmpfs            /tmp            tmpfs   defaults,noatime,nosuid,nodev,noexec,mode=1777,size=64M 
+    ```
