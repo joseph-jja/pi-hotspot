@@ -7,7 +7,15 @@
 - hostapd
 
 ## configure 
-- wpa_suplicant
+- wpa_suplicant 
+  - you need to add a few lines
+  ```
+    network={
+      ssid="the ssid of the network to connect to"
+      key_mgmt=WPA-PSK
+      psk="your key"
+    }
+  ```
 - hostapd
 - isc-dhcp-server
 - /etc/network/interfaces
