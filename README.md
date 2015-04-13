@@ -20,6 +20,7 @@
   - in /etc/defaults/hostapd set DAEMON_CONF="/etc/hostapd/hostapd.conf"
 - isc-dhcp-server
 - /etc/network/interfaces
+  - copy the dhcp.conf to /etc/dhcp 
 - ip forwarding
   - sysctl -w net.ipv4.ip_forward=1
   - sysctl -p /etc/sysctl.conf
