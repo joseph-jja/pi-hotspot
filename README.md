@@ -17,6 +17,7 @@
     }
   ```
 - hostapd
+  - in /etc/defaults/hostapd set DAEMON_CONF="/etc/hostapd/hostapd.conf"
 - isc-dhcp-server
 - /etc/network/interfaces
 - ip forwarding
