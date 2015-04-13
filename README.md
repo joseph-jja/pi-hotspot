@@ -33,5 +33,5 @@
 - make read only 
   - add this to your fstab
     ```
-    tmpfs            /tmp            tmpfs   defaults,noatime,nosuid,nodev,noexec,mode=1777,size=64M 
+      tmpfs            /tmp            tmpfs   defaults,noatime,nosuid,nodev,noexec,mode=1777,size=64M 
     ```
