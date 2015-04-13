@@ -27,4 +27,7 @@
   - iptables forwarding setup 
     - copy the iptables script to /etc/network/if-up.d/iptables
     - chmod +x /etc/network/if-up.d/iptables
+  - you may need to do the following
+    - echo "1" > /proc/sys/net/ipv4/conf/wlan0/forwarding
+    - echo "1" > /proc/sys/net/ipv4/conf/wlan1/forwarding  
 
