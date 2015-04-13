@@ -5,6 +5,7 @@
 ## install 
 - isc-dhcp-server
 - hostapd
+- unionfs-fuse
 
 ## configure 
 - wpa_suplicant 
@@ -21,6 +22,9 @@
 - isc-dhcp-server
 - /etc/network/interfaces
   - copy the dhcp.conf to /etc/dhcp 
+- union-fuse  
+  - use the fstab here
+  - use the mount_unionfs here in /usr/local/bin
 - ip forwarding
   - sysctl -w net.ipv4.ip_forward=1
   - sysctl -p /etc/sysctl.conf
