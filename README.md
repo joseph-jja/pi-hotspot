@@ -30,6 +30,7 @@
 - union-fusefor read only fs  
   - copy the fstab to /etc/fstab
   - use the mount_unionfs here in /usr/local/bin
+  - commendted out /etc/inittab some of the getty lines as it is headless
   - add this to your fstab
     ```
       tmpfs            /tmp            tmpfs   defaults,noatime,nosuid,nodev,noexec,mode=1777,size=64M 
