@@ -1,0 +1,12 @@
+<div> Current state: {{currentState}} </div>
+<div>
+    <form action="/update" method="post">
+    <label for="ssid">SSID: </label>
+    <input type="text" name="ssid" maxlength="50" size="50">
+    <label for="passKey">KEY: </label>
+    <input type="text" name="passKey" maxlength="50" size="50">
+    <button type="submit">
+        Update
+    </button>
+    </form>
+</div>
