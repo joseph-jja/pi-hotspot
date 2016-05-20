@@ -80,8 +80,8 @@ app.post( '/update', function ( req, res ) {
     updateStatus( res, updateKey );
 } );
 
-options.key = config.keyFile;
-options.cert = config.certFile;
+options.key = fs.readFileSync( config.keyFile );
+options.cert = fs.readFileSync( config.certFile );
 
 secureServer = https.createServer(options, app);
 secureServer.listen(config.port);
