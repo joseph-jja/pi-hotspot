@@ -17,13 +17,4 @@ if [ "$_IP" ]; then
   printf "My IP address is %s\n" "$_IP"
 fi
 
-# check for wlan1
-WLAN=$(/sbin/ifconfig |grep wlan1) || true
-if [ "$WLAN" ] ; then 
-    ifconfig -a wlan1 172.16.1.1
-    /etc/init.d/isc-dhcp-server restart
-fi
-
-#/sbin/iw reg set US
-
 exit 0
