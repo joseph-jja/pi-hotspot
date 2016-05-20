@@ -8,16 +8,16 @@ var express = require( 'express' ),
     exphbs = require( 'express-handlebars' ),
     app = express(),
     https = require( 'https' ),
-    http = require( 'http' ),
     fs = require( "fs" ),
     clientCode,
+    options = {},
     clientConfig,
     config;
 
 app.engine( '.hbs', exphbs( {
     defaultLayout: 'baseLayout',
     extname: '.hbs'
-} ) );
+} ) );opt
 
 app.set( 'view engine', '.hbs' );
 
@@ -79,6 +79,9 @@ app.post( '/update', function ( req, res ) {
     }
     updateStatus( res, updateKey );
 } );
+
+options.key = config.keyFile;
+options.cert = config.certFile;
 
 secureServer = https.createServer(options, app);
 secureServer.listen(config.port);
