@@ -73,9 +73,12 @@ app.get( '/', function ( req, res ) {
 // deal wtih a post
 app.post( '/update', function ( req, res ) {
     var updateKey;
-    winston.log( 'info', "Key = " + req.body.changeModeKey );
-    if ( req.body.changeModeKey && req.body.changeModeKey == config.changeModeKey ) {
-        updateKey = req.body.changeModeKey;
+    winston.log( 'info', "SSID = " + req.body.ssid );
+    if ( req.body.ssid && req.body.passKey ) {
+        updateKey = {
+            ssid: req.body.ssid,
+            key: req.body.passKey
+        }
     }
     updateStatus( res, updateKey );
 } );
