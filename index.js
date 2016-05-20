@@ -33,12 +33,15 @@ clientCode = args[ 2 ];
 clientConfig = args[ 3 ];
 config = JSON.parse( fs.readFileSync( clientConfig ) );
 
-function sendResponse( res, toggle ) {
+function updateStatus( res, updateData ) {
+     res.render( 'index', {
+        "currentState": updateData
+    } );
+}
+
+function showStatus( res ) {
     var result, cmd;
-    cmd = "node " + clientCode + " " + clientConfig;
-    if ( typeof toggle !== 'undefined' ) {
-        cmd = cmd + " " + toggle;
-    }
+    cmd = "/sbin/ifconfig";
     result = exec( cmd, function ( err, stdout, stderr ) {
         var result = '';
         if ( stdout ) {
@@ -51,10 +54,8 @@ function sendResponse( res, toggle ) {
             result += err;
         }
         if ( result ) {
-            result = result.replace( "Done!", "" );
-            result = JSON.parse( result );
             res.render( 'index', {
-                "currentState": result[ config.replyMessage ]
+                "currentState": result
             } );
         } else {
             res.render( 'index', {
@@ -66,7 +67,7 @@ function sendResponse( res, toggle ) {
 
 // respond with "hello world" when a GET request is made to the homepage
 app.get( '/', function ( req, res ) {
-    sendResponse( res );
+    showStatus( res );
 } );
 
 // deal wtih a post
@@ -76,7 +77,7 @@ app.post( '/update', function ( req, res ) {
     if ( req.body.changeModeKey && req.body.changeModeKey == config.changeModeKey ) {
         updateKey = req.body.changeModeKey;
     }
-    sendResponse( res, updateKey );
+    updateStatus( res, updateKey );
 } );
 
 secureServer = https.createServer(options, app);
