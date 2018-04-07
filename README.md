@@ -1,9 +1,13 @@
 # pi-hotspot
 #### setup a raspberry pi as a wifi repeater-ish hospot
 
+## Currently in the process of updating this for the pi 3 B+ and raspbian stretch
+
+## Start by following the raspberry pi documentation
+https://www.raspberrypi.org/documentation/configuration/wireless/access-point.md
 
 ## install 
-- isc-dhcp-server
+- dnsmasq
 - hostapd
 - unionfs-fuse
 
@@ -19,18 +23,14 @@
   ```
 - hostapd
   - in /etc/defaults/hostapd set DAEMON_CONF="/etc/hostapd/hostapd.conf"
-  - use the hostapd.conf and set your ssid correctly
-  - put your shared key in /etc/hostapd/hostapd.wpa_psk
-- isc-dhcp-server
-  - copy this dhcp.conf to /etc/dhcp
-  - dhcp server will listen on 172.16.1.1 to change that edit /etc/defaults/isc-dhcp-server
-- /etc/network/interfaces
-  - copy the interfaces file to /etc/network/interfaces
-  - NOTE: there is a bug in this one where wlan1 does not start
+  - use the hostapd.conf and set your ssid correctly => mostly works but needs tweaking
+  - put your shared key in /etc/hostapd/hostapd.wpa_psk => seems I had to use wpa_passphrase as this might not be working?
+- follow instructions for dhcp server
+  - using 172.16.1.1 is a private IP address
 - union-fusefor read only fs  
-  - copy the fstab to /etc/fstab
+  - copy the fstab to /etc/fstab => there is some read only setup done 
   - use the mount_unionfs here in /usr/local/bin
-  - commendted out /etc/inittab some of the getty lines as it is headless
+  - commented out /etc/inittab some of the getty lines as it is headless
   - add this to your fstab
     ```
       tmpfs            /tmp            tmpfs   defaults,noatime,nosuid,nodev,noexec,mode=1777,size=64M 
