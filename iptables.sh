@@ -10,6 +10,7 @@ LAN_IFACE=$ACCESS_POINT_INTERFACE
 WAN_IFACE=$PUBLIC_INTERFACE
 # flush all rules
 iptables -F 
+ip6tables -F
 
 # enable ssh so you can talk to the pi :) 
 iptables -A INPUT -p tcp --dport 22 -j ACCEPT
