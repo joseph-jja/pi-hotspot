@@ -6,8 +6,8 @@ ACCESS_POINT_IFACE=wlan0
 PUBLIC_IFACE=wlan1
 
 # short hand 
-API=$ACCESS_POINT_INTERFACE
-PI=$PUBLIC_INTERFACE
+LAN_IFACE=$ACCESS_POINT_INTERFACE
+WAN_IFACE=$PUBLIC_INTERFACE
 # flush all rules
 iptables -F 
 
@@ -27,15 +27,17 @@ iptables -A INPUT -i lo -j ACCEPT
 iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
 
 # forward packets between interfaces
-iptables -A FORWARD -i $API -j ACCEPT
-#iptables -A FORWARD -i $API -o $PI -j ACCEPT
-iptables -A FORWARD -o $API -j ACCEPT
-#iptables -A FORWARD -i $PI -o $API -j ACCEPT
+iptables -A FORWARD -i $LAN_IFACE -j ACCEPT
+#iptables -A FORWARD -i $LAN_IFACE -o $WAN_IFACE -j ACCEPT
+iptables -A FORWARD -o $LAN_IFACE -j ACCEPT
+#iptables -A FORWARD -i $WAN_IFACE -o $LAN_IFACE -j ACCEPT
 
-# save rules 
-# /sbin/service iptables save
+# need nat too
+iptables -t nat -A POSTROUTING -o $WAN_IFACE -j MASQUERADE
 
 # so for an access point we need to enable dhcpd ports 
 #iptables -A INPUT -i $API -p udp --dport 67 -j ACCEPT
 #iptables -A INPUT -i $API -p udp --dport 68 -j ACCEPT
 
+# save rules 
+# /sbin/service iptables save
