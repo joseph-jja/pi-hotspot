@@ -27,6 +27,10 @@ iptables -A INPUT -i lo -j ACCEPT
 iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
 
 # forward packets between interfaces
+iptables -A FORWARD -i $API -j ACCEPT
+#iptables -A FORWARD -i $API -o $PI -j ACCEPT
+iptables -A FORWARD -o $API -j ACCEPT
+#iptables -A FORWARD -i $PI -o $API -j ACCEPT
 
 # save rules 
 # /sbin/service iptables save
