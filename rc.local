@@ -17,4 +17,6 @@ if [ "$_IP" ]; then
   printf "My IP address is %s\n" "$_IP"
 fi
 
+iptables-restore < /etc/firewall.conf
+
 exit 0
