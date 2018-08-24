@@ -50,6 +50,8 @@ iptables -t nat -A POSTROUTING -o $WAN_IFACE -j MASQUERADE
 # so for an access point we need to enable dhcpd ports 
 iptables -A INPUT -i $LAN_IFACE -p udp --dport 67 -j ACCEPT
 iptables -A INPUT -i $LAN_IFACE -p udp --dport 68 -j ACCEPT
+iptables -A INPUT -i $WAN_IFACE -p udp --dport 67 -j ACCEPT
+iptables -A INPUT -i $WAN_IFACE -p udp --dport 68 -j ACCEPT
 
 # garbage on my network 
 iptables -A INPUT -j DROP -p udp --dport 2190
