@@ -40,9 +40,7 @@ iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
 
 # forward packets between interfaces
 iptables -A FORWARD -i $LAN_IFACE -j ACCEPT
-#iptables -A FORWARD -i $LAN_IFACE -o $WAN_IFACE -j ACCEPT
 iptables -A FORWARD -o $LAN_IFACE -j ACCEPT
-#iptables -A FORWARD -i $WAN_IFACE -o $LAN_IFACE -j ACCEPT
 
 # need nat too
 iptables -t nat -A POSTROUTING -o $WAN_IFACE -j MASQUERADE
@@ -52,6 +50,10 @@ iptables -A INPUT -i $LAN_IFACE -p udp --dport 67 -j ACCEPT
 iptables -A INPUT -i $LAN_IFACE -p udp --dport 68 -j ACCEPT
 iptables -A INPUT -i $WAN_IFACE -p udp --dport 67 -j ACCEPT
 iptables -A INPUT -i $WAN_IFACE -p udp --dport 68 -j ACCEPT
+
+# dns requests on lan interface
+iptables -A INPUT -i $LAN_IFACE -p tcp --dport 53 -j ACCEPT
+iptables -A INPUT -i $LAN_IFACE -p udp --dport 53 -j ACCEPT
 
 # garbage on my network 
 iptables -A INPUT -j DROP -p udp --dport 2190
