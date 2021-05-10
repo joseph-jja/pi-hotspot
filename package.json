@@ -25,10 +25,5 @@
     "request": "^2.55.0",
     "underscore": "^1.8.2",
     "winston": "^1.0.0"
-  },
-  "devDependencies": {
-    "grunt-jsbeautifier": "^0.2.10",
-    "grunt": "^0.4.5",
-    "grunt-cli": "^0.1.13"
   }
 }
