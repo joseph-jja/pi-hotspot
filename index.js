@@ -1,23 +1,25 @@
-var express = require( 'express' ),
-    server,
-    secureServer,
-    args = process.argv,
+const https = require( 'https' ),
+    exec = require( "child_process" ).exec,
+    fs = require( "fs" );
+
+const express = require( 'express' ),
     bodyParser = require( 'body-parser' ),
     winston = require( 'winston' ),
-    exec = require( "child_process" ).exec,
-    exphbs = require( 'express-handlebars' ),
-    app = express(),
-    https = require( 'https' ),
-    fs = require( "fs" ),
+    { engine } = require( 'express-handlebars' );
+
+let server,
+    secureServer,
+    args = process.argv,
+    app = express(),    
     clientCode,
     options = {},
     clientConfig,
     config;
 
-app.engine( '.hbs', exphbs( {
+app.engine( '.hbs', engine( {
     defaultLayout: 'baseLayout',
     extname: '.hbs'
-} ) );opt
+} ) );
 
 app.set( 'view engine', '.hbs' );
 
